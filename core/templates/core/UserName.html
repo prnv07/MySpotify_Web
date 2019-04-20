@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My spotify</title>
+
+</head>
+<body>
+    <form action ="{% url 'script_exec' %}" method="POST">
+        {% csrf_token %}
+        <label for="userbox">Enter username</label>
+        <input type="text" placeholder="Enter your Spotify Username" id="userbox" name="username">
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+
+    </script>
+</body>
+</html>
