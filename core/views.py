@@ -1,3 +1,12 @@
+import matplotlib
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
+
+from io import BytesIO
+import base64
+
+
+
 from django.shortcuts import render, redirect
 import requests_oauthlib
 from requests_oauthlib import OAuth2Session
@@ -15,9 +24,8 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.cluster import KMeans
 import numpy as np
 from math import *
-
+from . import aux
 # Create your views here.
-
 
 def UserNameView(request):
     return render(request, 'core/UserName.html')
@@ -99,7 +107,46 @@ def ShowStats(request):
         'client_secret': client_secret
         }
     r = requests.post(url=API_ENDPOINT, data=data)
-    data = r.json();
+    data = r.json()
     sp = spotipy.Spotify(auth=data["access_token"])
     results = sp.current_user_saved_tracks()
-    return render(request, 'core/success.html', {'results': results["items"]})
+
+    df_saved_tracks = aux.table(sp)
+
+    df_mean = df_saved_tracks.loc[df_saved_tracks['added_at_year'] == 2019]
+
+    df_mean = df_mean.groupby(['added_at_month']).mean().sort_values('added_at_month_index')
+
+    df_mean.plot(kind='line', y='acousticness', figsize=(10, 10))
+    buf = BytesIO()
+    plt.savefig(buf, format='png', dpi=300)
+    image_acousticness = base64.b64encode(buf.getvalue()).decode('utf-8').replace('\n', '')
+    buf.close()
+
+    df_mean.plot(kind='line', y='danceability', figsize=(10, 10))
+    buf = BytesIO()
+    plt.savefig(buf, format='png', dpi=300)
+    image_danceability = base64.b64encode(buf.getvalue()).decode('utf-8').replace('\n', '')
+    buf.close()
+
+    df_mean.plot(kind='line', y='instrumentalness', figsize=(10, 10))
+    buf = BytesIO()
+    plt.savefig(buf, format='png', dpi=300)
+    image_instrumentalness = base64.b64encode(buf.getvalue()).decode('utf-8').replace('\n', '')
+    buf.close()
+
+    df_mean.plot(kind='line', y='speechiness', figsize=(10, 10))
+    buf = BytesIO()
+    plt.savefig(buf, format='png', dpi=300)
+    image_speechiness = base64.b64encode(buf.getvalue()).decode('utf-8').replace('\n', '')
+    buf.close()
+
+    context = {
+           'results' : results["items"],
+            'image_acousticness'     : image_acousticness,
+            'image_danceability'     : image_danceability,
+            'image_instrumentalness' : image_instrumentalness,
+            'image_speechiness'      : image_speechiness,
+    }
+
+    return render(request, 'core/success.html', context)
