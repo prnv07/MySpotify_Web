@@ -70,3 +70,58 @@ def table(sp):
     df_saved_tracks["added_at_month_index"] = added_ts_list_month_index
 
     return df_saved_tracks
+
+def radarchart(df_saved_tracks):
+    cluster_features = ['acousticness', 'danceability', 'instrumentalness', 'energy', 'speechiness']
+    df_recent = df_saved_tracks.loc[df_saved_tracks['added_at_year'] == 2019]
+
+    df_cluster = df_recent[cluster_features]
+    X = np.array(df_cluster)
+    scaler = StandardScaler()
+    scaler.fit(X)
+    X = scaler.transform(X)
+
+    num_clusters = 5
+    kmeanModel = KMeans(n_clusters=num_clusters, max_iter=10000, init='k-means++', random_state=123).fit(X)
+    df_recent.loc[:, 'cluster'] = kmeanModel.labels_
+    radar_col = cluster_features + ['cluster']
+
+    # feature average for each cluster as a radar chart
+    df_radar = df_recent[radar_col]
+    df_radar = df_radar.groupby('cluster').mean().reset_index()
+
+    return df_radar
+
+
+def make_radar(row, title, color, dframe, num_clusters):
+    # number of variable
+    categories = list(dframe)[1:]
+    N = len(categories)
+
+    # What will be the angle of each axis in the plot? (we divide the plot / number of variable)
+    angles = [n / float(N) * 2 * math.pi for n in range(N)]
+    angles += angles[:1]
+
+    # Initialise the radar plot
+    ax = plt.subplot(2, math.ceil(num_clusters / 2), row + 1, polar=True, )
+
+    # If you want the first axis to be on top:
+    ax.set_theta_offset(math.pi / 2)
+    ax.set_theta_direction(-1)
+
+    # Draw one axe per variable + add labels labels yet
+    plt.xticks(angles[:-1], categories, color='grey', size=14)
+
+    # Draw ylabels
+    ax.set_rlabel_position(0)
+    plt.yticks([0.2, 0.4, 0.6, 0.8], ["0.2", "0.4", "0.6", "0.8"], color="grey", size=8)
+    plt.ylim(0, 1)
+
+    # Ind1
+    values = dframe.loc[row].drop('cluster').values.flatten().tolist()
+    values += values[:1]
+    ax.plot(angles, values, color=color, linewidth=2, linestyle='solid')
+    ax.fill(angles, values, color=color, alpha=0.4)
+
+    # Add a title
+    plt.title(title, size=16, color=color, y=1.06)

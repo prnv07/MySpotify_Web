@@ -141,12 +141,36 @@ def ShowStats(request):
     image_speechiness = base64.b64encode(buf.getvalue()).decode('utf-8').replace('\n', '')
     buf.close()
 
+    df_radar = aux.radarchart(df_saved_tracks)
+
+    plt.figure(figsize=(24, 15))
+
+    # Create a color palette:
+    my_palette = plt.cm.get_cmap("Set1", len(df_radar.index))
+
+    # Create cluster name
+    title_list = ['Group 1', 'Group 2', 'Group 3', 'Group 4', 'Group 5']
+
+    # Loop to plot
+    for row in range(0, len(df_radar.index)):
+        aux.make_radar(row=row, title=str(df_radar['cluster'][row]) + ' : ' + title_list[row],
+                   color=my_palette(row), dframe=df_radar, num_clusters=len(df_radar.index))
+
+    # # Show plot
+    # plt.show()
+
+    buf = BytesIO()
+    plt.savefig(buf, format='png', dpi=300)
+    image_radars = base64.b64encode(buf.getvalue()).decode('utf-8').replace('\n', '')
+    buf.close()
+
     context = {
            'results' : results["items"],
             'image_acousticness'     : image_acousticness,
             'image_danceability'     : image_danceability,
             'image_instrumentalness' : image_instrumentalness,
             'image_speechiness'      : image_speechiness,
+            'image_radars'           : image_radars,
     }
 
     return render(request, 'core/success.html', context)
