@@ -74,25 +74,30 @@
 
   <section class="jumbotron text-center">
     <div class="container">
-      <h1 class="jumbotron-heading">Here are your stats!</h1>
+      <h1 class="jumbotron-heading">Welcome to My Spotify! </h1>
+        <h3 class = "jumbotron-heading">Click away to know your listening trends! </h3>
 {#      <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>#}
 {#      <p>#}
 {#        <a href="#" class="btn btn-primary my-2">Main call to action</a>#}
 {#        <a href="#" class="btn btn-secondary my-2">Secondary action</a>#}
 {#      </p>#}
+        <br><br>
+        <p><a class="btn btn-primary text-center" href="{% url 'script_exec' %}">Click to view your stats!</a> </p>
     </div>
   </section>
 
 
-    <div class="container">
 
-      <div class="row">
-        <div class="col-6">
-          <div class="card shadow-sm">
+{#    <div class="container">#}
+{##}
+{#      <div class="row">#}
+{##}
+{#        <div class="col-6">#}
+{#          <div class="card shadow-sm">#}
 {#            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>#}
-                <img src="data:image/png;base64,{{image_acousticness}}" alt="some text to display to your users when the image does not show correctly" width=500 height=auto />
-              <div class="card-body">
-              <p class="card-text">Acousticness</p>
+{#                <img src="data:image/png;base64,{{image_acousticness}}" alt="some text to display to your users when the image does not show correctly" width=500 height=auto />#}
+{#              <div class="card-body">#}
+{#              <p class="card-text">Acousticness</p>#}
 {#              <div class="d-flex justify-content-between align-items-center">#}
 {#                <div class="btn-group">#}
 {#                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>#}
@@ -100,15 +105,15 @@
 {#                </div>#}
 {#                <small class="text-muted">9 mins</small>#}
 {#              </div>#}
-            </div>
-          </div>
-        </div>
-        <div class="col-6">
-          <div class="card shadow-sm">
+{#            </div>#}
+{#          </div>#}
+{#        </div>#}
+{#        <div class="col-6">#}
+{#          <div class="card shadow-sm">#}
 {#            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>#}
-            <img src="data:image/png;base64,{{image_danceability}}" alt="some text to display to your users when the image does not show correctly" width=500 height=auto />
-              <div class="card-body">
-              <p class="card-text">Danceability</p>
+{#            <img src="data:image/png;base64,{{image_danceability}}" alt="some text to display to your users when the image does not show correctly" width=500 height=auto />#}
+{#              <div class="card-body">#}
+{#              <p class="card-text">Danceability</p>#}
 {#              <div class="d-flex justify-content-between align-items-center">#}
 {#                <div class="btn-group">#}
 {#                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>#}
@@ -116,15 +121,15 @@
 {#                </div>#}
 {#                <small class="text-muted">9 mins</small>#}
 {#              </div>#}
-            </div>
-          </div>
-        </div>
-        <div class="col-6">
-          <div class="card shadow-sm">
+{#            </div>#}
+{#          </div>#}
+{#        </div>#}
+{#        <div class="col-6">#}
+{#          <div class="card shadow-sm">#}
 {#            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>#}
-                <img src="data:image/png;base64,{{image_instrumentalness}}" alt="some text to display to your users when the image does not show correctly" width=500 height=auto />
-              <div class="card-body">
-              <p class="card-text">Instrumentalness</p>
+{#                <img src="data:image/png;base64,{{image_instrumentalness}}" alt="some text to display to your users when the image does not show correctly" width=500 height=auto />#}
+{#              <div class="card-body">#}
+{#              <p class="card-text">Instrumentalness</p>#}
 {#              <div class="d-flex justify-content-between align-items-center">#}
 {#                <div class="btn-group">#}
 {#                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>#}
@@ -132,16 +137,16 @@
 {#                </div>#}
 {#                <small class="text-muted">9 mins</small>#}
 {#              </div>#}
-            </div>
-          </div>
-        </div>
-
-        <div class="col-6">
-          <div class="card shadow-sm">
+{#            </div>#}
+{#          </div>#}
+{#        </div>#}
+{##}
+{#        <div class="col-6">#}
+{#          <div class="card shadow-sm">#}
 {#            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>#}
-                <img src="data:image/png;base64,{{image_speechiness}}" alt="some text to display to your users when the image does not show correctly" width=500 height=auto />
-              <div class="card-body">
-              <p class="card-text">Speechiness</p>
+{#                <img src="data:image/png;base64,{{image_speechiness}}" alt="some text to display to your users when the image does not show correctly" width=500 height=auto />#}
+{#              <div class="card-body">#}
+{#              <p class="card-text">Speechiness</p>#}
 {#              <div class="d-flex justify-content-between align-items-center">#}
 {#                <div class="btn-group">#}
 {#                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>#}
@@ -149,15 +154,15 @@
 {#                </div>#}
 {#                <small class="text-muted">9 mins</small>#}
 {#              </div>#}
-            </div>
-          </div>
-        </div>
-        <div class="col-6">
-          <div class="card shadow-sm">
+{#            </div>#}
+{#          </div>#}
+{#        </div>#}
+{#        <div class="col-6">#}
+{#          <div class="card shadow-sm">#}
 {#            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>#}
-                <img src="data:image/png;base64,{{image_radars}}" alt="some text to display to your users when the image does not show correctly" width=500 height=auto />
-              <div class="card-body">
-              <p class="card-text">Current Trends</p>
+{#                <img src="data:image/png;base64,{{image_radars}}" alt="some text to display to your users when the image does not show correctly" width=500 height=auto />#}
+{#              <div class="card-body">#}
+{#              <p class="card-text">Current Trends</p>#}
 {#              <div class="d-flex justify-content-between align-items-center">#}
 {#                <div class="btn-group">#}
 {#                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>#}
@@ -165,9 +170,9 @@
 {#                </div>#}
 {#                <small class="text-muted">9 mins</small>#}
 {#              </div>#}
-            </div>
-          </div>
-        </div>
+{#            </div>#}
+{#          </div>#}
+{#        </div>#}
 {#        <div class="col-md-4">#}
 {#          <div class="card mb-4 shadow-sm">#}
 {#            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>#}
@@ -229,8 +234,8 @@
 {#            </div>#}
 {#          </div>#}
 {#        </div>#}
-      </div>
-    </div>
+{#      </div>#}
+{#    </div>#}
 
 
 </main>

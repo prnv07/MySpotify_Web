@@ -28,7 +28,7 @@ from . import aux
 # Create your views here.
 
 def UserNameView(request):
-    return render(request, 'core/UserName.html')
+    return render(request, 'core/Welcome.html')
 
 def ExecuteScript(request):
     # username = request.POST['username']
