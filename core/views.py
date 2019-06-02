@@ -165,7 +165,7 @@ def ShowStats(request):
     buf.close()
 
     context = {
-           'results' : results["items"],
+           # 'results' : results["items"],
             'image_acousticness'     : image_acousticness,
             'image_danceability'     : image_danceability,
             'image_instrumentalness' : image_instrumentalness,
@@ -173,4 +173,4 @@ def ShowStats(request):
             'image_radars'           : image_radars,
     }
 
-    return render(request, 'core/success.html', context)
+    return render(request, 'core/Album.html', context)
